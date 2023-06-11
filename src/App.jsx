@@ -1,14 +1,14 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import Movies from "./Movies";
-
+//import Movies from "./Movies";
+import SearchParams from "./SearchParams";
 const App = () => {
   return (
     <div>
-      <Movies />
+      <SearchParams />
     </div>
   );
 };
 const root = createRoot(document.getElementById("root"));
 
-root.render(<App />);
+root.render(React.createElement(App));
