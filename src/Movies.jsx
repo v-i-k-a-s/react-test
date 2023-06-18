@@ -1,36 +1,39 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Movie from "./Movie";
+import Search from "./Search";
+
 const Movies = () => {
-  const [movieData, setMovieData] = useState([
-    { movieName: "batman", imdb: 8.2, id: 1 },
-    { movieName: "superman", imdb: 7.2, id: 2 },
+  const [movieArray, setMovieArray] = useState([
+    { movieName: "batman", imdb: 9.1, id: 0 },
+    { movieName: "aquaman", imdb: 8.1, id: 1 },
+    { movieName: "superman", imdb: 8.1, id: 2 },
   ]);
 
-  const increaseImdb = (id, increase) => {
-    let newMovieData = movieData.map((item) => {
-      if (item.id == id) {
-        item.imdb = item.imdb + increase;
+  const handleImdb = (id, increase = true, stepUp = 0.1) => {
+    const newMovieArray = movieArray.map((item) => {
+      let isAllowed = increase ? item.imdb < 10 : item.imdb > 0;
+      if (item.id == id && isAllowed) {
+        if (increase) {
+          item.imdb = item.imdb + stepUp;
+        } else {
+          item.imdb = item.imdb - stepUp;
+        }
+
         item.imdb = Number(item.imdb.toFixed(2));
       }
       return item;
     });
-
-    setMovieData(newMovieData);
+    setMovieArray(newMovieArray);
   };
+
   return (
-    <div>
-      {movieData.map((item) => {
-        return (
-          <Movie key={item.id} movieInfo={item} increaseImdb={increaseImdb} />
-        );
+    <div className="main-conatiner">
+      <Search />
+      {movieArray.map((item) => {
+        return <Movie key={item.id} movieData={item} handleImdb={handleImdb} />;
       })}
     </div>
   );
-
-  //return React.createElement("div", {}, MovieReactElements);
 };
 
 export default Movies;
-//Componenet --> function /class
-//compnentDidUpdate
-//useEffect(()=>{},)

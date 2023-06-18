@@ -1,22 +1,24 @@
-import React from "react";
 const Movie = (props) => {
-  const { movieName, imdb, id } = props.movieInfo;
-  const { increaseImdb } = props;
-  const handleIncreaseImdb = (id) => {
-    increaseImdb(id, 0.1);
-  };
+  const { handleImdb } = props;
+  const { movieName, imdb, id } = props.movieData;
   return (
     <div className="movie-container">
-      <h1>{movieName}</h1>
-      <p>{imdb}</p>
+      <h1>Movie Name : {movieName}</h1>
+      <h2> IMdb Rating {imdb}</h2>
       <button
         onClick={() => {
-          handleIncreaseImdb(id);
+          handleImdb(id, true);
         }}
       >
-        Increase IMDB
+        Increase Imdb
       </button>
-      <button>Delete</button>
+      <button
+        onClick={() => {
+          handleImdb(id, false);
+        }}
+      >
+        Decrease Imdb
+      </button>
     </div>
   );
 };
