@@ -1,11 +1,12 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
-import Movies from "./Movies";
+// import Movies from "./Movies";
+import DogForm from "./DogForm";
 const App = () => {
   return (
     <div>
-      <Movies />
+      <DogForm />
     </div>
   );
 };
